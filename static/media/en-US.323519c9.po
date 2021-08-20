@@ -85,7 +85,7 @@ msgstr "75%"
 msgid "<0/> All Proposals"
 msgstr "<0/> All Proposals"
 
-#: src/pages/Vote/VotePage.tsx
+#: 
 #~ msgid "<0/> TRUMPGAINS  {0}"
 #~ msgstr "<0/> TRUMPGAINS  {0}"
 
@@ -94,7 +94,7 @@ msgstr "<0/> All Proposals"
 msgid "<0/> Votes"
 msgstr "<0/> Votes"
 
-#: src/pages/Vote/VotePage.tsx
+#: 
 #~ msgid "<0/>  <1>NOTE: Trump GAINS v1 is meant for holders whom are not transferring / selling tokens, but wanting to track the amount of gains they have obtained from holding. In the future, we plan to build the ability to filter out transactions that are sells / transfers.</1>"
 #~ msgstr "<0/>  <1>NOTE: Trump GAINS v1 is meant for holders whom are not transferring / selling tokens, but wanting to track the amount of gains they have obtained from holding. In the future, we plan to build the ability to filter out transactions that are sells / transfers.</1>"
 
@@ -1433,8 +1433,12 @@ msgid "Route"
 msgstr "Route"
 
 #: src/pages/Vote/VotePage.tsx
-msgid "STIMULUSGAINS  {0}"
-msgstr "STIMULUSGAINS  {0}"
+msgid "STIMULUSGAINS"
+msgstr "STIMULUSGAINS"
+
+#: 
+#~ msgid "STIMULUSGAINS  {0}"
+#~ msgstr "STIMULUSGAINS  {0}"
 
 #: src/components/SearchModal/CurrencySearch.tsx
 msgid "Search name or paste address"
@@ -1516,6 +1520,10 @@ msgid "Something went wrong"
 msgstr "Something went wrong"
 
 #: src/pages/Vote/VotePage.tsx
+msgid "Start Tracking Gains"
+msgstr "Start Tracking Gains"
+
+#: src/pages/Vote/VotePage.tsx
 msgid "Started tracking gains {trackingSince}"
 msgstr "Started tracking gains {trackingSince}"
 
@@ -1526,6 +1534,10 @@ msgstr "Status"
 #: src/pages/Earn/Manage.tsx
 msgid "Step 1. Get UNI-V2 Liquidity tokens"
 msgstr "Step 1. Get UNI-V2 Liquidity tokens"
+
+#: src/pages/Vote/VotePage.tsx
+msgid "Stop tracking Gains"
+msgstr "Stop tracking Gains"
 
 #: src/state/governance/hooks.ts
 msgid "Submitted new proposal"
@@ -1965,6 +1977,10 @@ msgstr "Voting ended {0}"
 msgid "Voting ends approximately {0}"
 msgstr "Voting ends approximately {0}"
 
+#: src/pages/Vote/VotePage.tsx
+msgid "WANTING MORE GAINS?"
+msgstr "WANTING MORE GAINS?"
+
 #: src/components/TransactionConfirmationModal/index.tsx
 msgid "Waiting For Confirmation"
 msgstr "Waiting For Confirmation"
@@ -2369,9 +2385,9 @@ msgstr "{percentForSlider}%"
 msgid "{tokenB} per {tokenA}"
 msgstr "{tokenB} per {tokenA}"
 
-#: src/pages/Vote/VotePage.tsx
-msgid "{trackingLabel}"
-msgstr "{trackingLabel}"
+#: 
+#~ msgid "{trackingLabel}"
+#~ msgstr "{trackingLabel}"
 
 #: src/components/CurrencyInputPanel/FiatValue.tsx
 msgid "~$ <0/>"
