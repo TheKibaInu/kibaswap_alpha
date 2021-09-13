@@ -1531,6 +1531,14 @@ msgstr "Something went wrong"
 msgid "SqueezeGains"
 msgstr "SqueezeGains"
 
+#: src/components/Menu/index.tsx
+msgid "SqueezeStats (COMING SOON)"
+msgstr "SqueezeStats (COMING SOON)"
+
+#: src/components/Menu/index.tsx
+msgid "SqueezeTools (COMING SOON)"
+msgstr "SqueezeTools (COMING SOON)"
+
 #: src/pages/Vote/VotePage.tsx
 msgid "Start Tracking Gains"
 msgstr "Start Tracking Gains"
@@ -1770,13 +1778,13 @@ msgstr "Transaction deadline"
 msgid "Transfer Token"
 msgstr "Transfer Token"
 
-#: src/components/Menu/index.tsx
-msgid "TrumpStats"
-msgstr "TrumpStats"
+#: 
+#~ msgid "TrumpStats"
+#~ msgstr "TrumpStats"
 
-#: src/components/Menu/index.tsx
-msgid "TrumpTools"
-msgstr "TrumpTools"
+#: 
+#~ msgid "TrumpTools"
+#~ msgstr "TrumpTools"
 
 #: src/components/WalletModal/PendingView.tsx
 msgid "Try Again"
