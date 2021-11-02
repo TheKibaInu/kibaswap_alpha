@@ -4,8 +4,8 @@
     "static/js/0.550a4e1c.chunk.js.map": "./static/js/0.550a4e1c.chunk.js.map",
     "static/js/1.c83bfad1.chunk.js": "./static/js/1.c83bfad1.chunk.js",
     "static/js/1.c83bfad1.chunk.js.map": "./static/js/1.c83bfad1.chunk.js.map",
-    "main.js": "./static/js/main.6c5ca432.chunk.js",
-    "main.js.map": "./static/js/main.6c5ca432.chunk.js.map",
+    "main.js": "./static/js/main.797b9488.chunk.js",
+    "main.js.map": "./static/js/main.797b9488.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.b53a42a2.js",
     "runtime-main.js.map": "./static/js/runtime-main.b53a42a2.js.map",
     "static/css/4.2efb9cd0.chunk.css": "./static/css/4.2efb9cd0.chunk.css",
@@ -96,7 +96,6 @@
     "static/media/ar-SA.po": "./static/media/ar-SA.0564929e.po",
     "static/media/arbitrum_logo.ec8e5080.svg": "./static/media/arbitrum_logo.ec8e5080.svg",
     "static/media/arrow-right.956d575c.svg": "./static/media/arrow-right.956d575c.svg",
-    "static/media/bg.5d3e3811.jpeg": "./static/media/bg.5d3e3811.jpeg",
     "static/media/big_unicorn.595c4996.png": "./static/media/big_unicorn.595c4996.png",
     "static/media/blue-loader.249140da.svg": "./static/media/blue-loader.249140da.svg",
     "static/media/ca-ES.po": "./static/media/ca-ES.265cb319.po",
@@ -145,6 +144,6 @@
     "static/js/runtime-main.b53a42a2.js",
     "static/css/4.2efb9cd0.chunk.css",
     "static/js/4.0db61732.chunk.js",
-    "static/js/main.6c5ca432.chunk.js"
+    "static/js/main.797b9488.chunk.js"
   ]
 }
