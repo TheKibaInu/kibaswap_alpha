@@ -13,12 +13,12 @@ import Marquee from "react-fast-marquee";
 import { RowFixed } from 'components/Row'
 import _ from 'lodash'
 import cultureTokens from '../../../src/trending.json'
+import { rgba } from 'polished'
 import styled from 'styled-components/macro'
 import { useIsDarkMode } from 'state/user/hooks'
 import useTheme from 'hooks/useTheme'
 import { useToken } from 'hooks/Tokens'
 import { useWeb3React } from '@web3-react/core'
-import { rgba } from 'polished'
 
 const CardWrapper = styled(StyledInternalLink)`
   min-width: 190px;
@@ -203,11 +203,6 @@ const _TopTokenMovers = React.memo(() => {
                 id: token.address
               }
             })),
-            {
-              token0: {
-                id: `0x79a06acb8bdd138beeecce0f1605971f3ac7c09b`
-              }
-            }
           ].map(async (pair: any) => {
             const value = (!chainId || chainId === 1) ? await getTokenData(pair.token0.id, ethPrice, ethPriceOld, blockOne, blockTwo) as any : await fetchBscTokenData(pair.token0.id, bnbPrices?.current, bnbPrices?.oneDay, blockOne, blockTwo)
             if (value) {

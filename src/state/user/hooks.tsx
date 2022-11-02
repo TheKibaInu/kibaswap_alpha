@@ -119,7 +119,7 @@ export function useIsPairFavorited (pairAddress: string) {
 
   return useMemo(() => {
     return favorites?.some((favorite) => favorite?.pairAddress?.toLowerCase() == pairAddress?.toLowerCase())
-  }, [favorites])
+  }, [favorites, pairAddress])
 }
 
 export function useUserLocale(): SupportedLocale | null {
