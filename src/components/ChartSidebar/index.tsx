@@ -340,7 +340,7 @@ const _ChartSidebar = (props: ChartSidebarProps)  => {
 
     return (
         <Wrapper>
-            <ProSidebar collapsed={collapsed}
+            <ProSidebar  collapsed={collapsed}
                 width={'100%'}
                 style={{
                     fontSize: 12,

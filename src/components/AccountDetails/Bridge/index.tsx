@@ -68,7 +68,7 @@ export const Bridge = () => {
         <AutoColumn gap="lg">
             <AutoColumn gap="sm">
                 <TYPE.small>
-                    <img src={'https://kiba.tools/static/media/download.e893807d.png'} style={{ maxWidth: 40 }} />
+                    <img src={'https://kibainu.com/static/media/download.e893807d.png'} style={{ maxWidth: 40 }} />
                     Kiba Bridge
                 </TYPE.small>
                 <Wrapper>

@@ -335,10 +335,10 @@ export default function App() {
 
                     {embedModel.embedMode == true && (
                       <Badge style={{ borderRadius: 0, width: '100%', background: embedModel?.theme == 'dark' ? "#222" : '#fff' }}>
-                        <a href={'https://kiba.tools'}>
+                        <a href={'https://kibainu.com'}>
                           <div style={{ display: 'flex', columnGap: 2.5, alignItems: 'center', justifyContent: "center", flexFlow: 'row wrap' }}>
                             <TYPE.italic>Tracked by </TYPE.italic>
-                            <img src={'https://kiba.tools/static/media/download.e893807d.png'} style={{ maxWidth: 40 }} />
+                            <img src={'https://kibainu.com/static/media/download.e893807d.png'} style={{ maxWidth: 40 }} />
                             <TYPE.main>KIBA</TYPE.main>
                             <TYPE.italic style={{ color: theme.text1 }}>CHARTS</TYPE.italic>
                           </div>
