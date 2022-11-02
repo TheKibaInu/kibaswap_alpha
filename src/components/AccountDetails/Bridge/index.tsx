@@ -4,6 +4,8 @@ import { AutoColumn } from 'components/Column'
 import { DarkCard } from 'components/Card'
 import Loader from 'components/Loader'
 import { TYPE } from 'theme'
+import  bridgeicon  from '../../../assets/images/bridgeicon.png'
+import { isMobile } from 'react-device-detect'
 import styled from 'styled-components/macro'
 import { useIsDarkMode } from 'state/user/hooks'
 import useTheme from 'hooks/useTheme'
@@ -68,8 +70,13 @@ export const Bridge = () => {
         <AutoColumn gap="lg">
             <AutoColumn gap="sm">
                 <TYPE.small>
-                    <img src={'https://kibainu.com/static/media/download.e893807d.png'} style={{ maxWidth: 40 }} />
-                    Kiba Bridge
+                <img
+              width={isMobile ? '10px' : '20px'}
+              src={bridgeicon}
+              margin-right='10px'
+              
+            />
+                      Kiba Crosschain Bridge
                 </TYPE.small>
                 <Wrapper>
                     {content}
