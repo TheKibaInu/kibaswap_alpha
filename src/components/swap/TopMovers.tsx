@@ -289,7 +289,7 @@ const _TopTokenMovers = React.memo(() => {
           <Marquee gradient={false} pauseOnHover>
             <React.Fragment />
             <FixedContainer>
-              <ScrollableRow>
+              <ScrollableRow style={{padding:"4px 15px 6px 20px"}}>
                 {mappedTokens.map((entry, i) =>
                   entry ? <DataCard index={i} key={`${i}.${entry.symbol}.${entry.address}`} tokenData={entry} /> : null
                 )}
