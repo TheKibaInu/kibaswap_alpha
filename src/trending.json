@@ -17,5 +17,11 @@
         "name": "CryptoCartV2",
         "symbol": "CCv2",
         "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/9564.png"
+    },
+    {
+        "address":"0xc5a9bc46a7dbe1c6de493e84a18f02e70e2c5a32",
+        "name": "World Cup Inu",
+        "symbol": "WCI",
+        "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/21962.png"
     }
 ]
