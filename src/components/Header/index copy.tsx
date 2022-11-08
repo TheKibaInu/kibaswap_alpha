@@ -1,7 +1,7 @@
 import { AlertOctagon, CheckCircle, Eye, EyeOff } from 'react-feather'
-import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
-import React, { ReactNode, useState } from 'react'
-import { HeaderPairSearch } from './HeaderPairSearch'
+import { NavLink, useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+
 import { BurntKiba } from 'components/BurntKiba'
 import { ExternalLink } from '../../theme'
 import Menu from '../Menu'
@@ -20,13 +20,6 @@ import { useDarkModeManager } from 'state/user/hooks'
 import { useETHBalances } from 'state/wallet/hooks'
 import useInterval from 'hooks/useInterval'
 import useTheme from 'hooks/useTheme'
-import { Box } from 'components/AndyComponents/Box'
-import { FlRow } from 'components/AndyComponents/Flex'
-
-import * as styles from '../AndyComponents/style.css'
-import { MenuDropdown } from './MenuDropdown'
-
-
 
 export type EmbedModel = {
   showTrending?: boolean
@@ -60,33 +53,105 @@ export const useIsEmbedMode = (): EmbedModel => {
   }
 }
 
+const HeaderFrame = styled.div<{ showBackground: boolean }>`
+  display: grid;
+  //background: radial-gradient( #0000004a,transparent);
+  grid-template-columns: 150px 1fr 120px;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  top: 0;
+  position: relative;
+  padding: 1rem;
+  z-index: 21;
+  position: relative;
+  padding-top:10px;
+  /* Background slide effect on scroll. */
+  background-position: ${({ showBackground }) => (showBackground ? '0 -100%' : '0 0')};
+  background-size: 100% 200%;
+  transition: background-position 0.1s, box-shadow 0.1s;
+  background-blend-mode: hard-light;
+  ${({ theme }) => theme.mediaWidth.upToLarge`
+    grid-template-columns: 48px 1fr 1fr;
+  `};
 
-interface MenuItemProps {
-  href: string
-  id?: NavLinkProps['id']
-  isActive?: boolean
-  children: ReactNode
-}
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    padding:  1rem;
+    grid-template-columns: 1fr 1fr;
+  `};
 
-const MenuItem = ({ href, id, isActive, children }: MenuItemProps) => {
-  return (
-    <NavLink
-      to={href}
-      className={isActive ? styles.activeMenuItem : styles.menuItem}
-      id={id}
-      style={{ textDecoration: 'none' }}
-    >
-      {children}
-    </NavLink>
-  )
-}
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding:  1rem;
+    grid-template-columns: 36px 1fr;
+  `};
+`
 
+const HeaderControls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
+`
+
+const HeaderElement = styled.div`
+  display: flex;
+  align-items: center;
+  gap:3px;
+  /* addresses safari's lack of support for "gap" */
+  & > *:not(:first-child) {
+    margin-left: 8px;
+  }
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    align-items: center;
+  `};
+`
+
+const HeaderLinks = styled(Row)`
+  justify-self: center;
+  background-color: ${({ theme }) => theme.bg0};
+  width: fit-content;
+  padding: 3px;
+  border-radius: 16px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  overflow: auto;
+  align-items: center;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+
+  ${({ theme }) => theme.mediaWidth.upToLarge`
+    justify-self: start;
+    margin-left: 30px;
+    `};
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    justify-self: center;
+  `};
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: center;
+    z-index: 99;
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    left: 20px;
+    margin: 0 auto;
+    background-color: ${({ theme }) => theme.bg0};
+    border: 1px solid ${({ theme }) => theme.bg2};
+  `};
+`
 
 const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   color:${props => props.theme.text1};
+  background-color: ${({ theme, active }) => (!active ? theme.bg0 : theme.bg0)};
   border-radius: 12px;
   white-space: nowrap;
   width: 100%;
@@ -97,6 +162,14 @@ const AccountElement = styled.div<{ active: boolean }>`
   }
 `
 
+const UNIAmount = styled(AccountElement)`
+  color: white;
+  padding: 4px 8px;
+  height: 36px;
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.bg0};
+  border: 1px solid ${({ theme }) => theme.bg1};
+`
 
 const getQuery = () => {
   if (typeof window !== 'undefined') {
@@ -139,6 +212,19 @@ export const useQueryParam = (
 };
 
 
+const UNIWrapper = styled.span`
+  width: fit-content;
+  position: relative;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+  :active {
+    opacity: 0.9;
+  }
+`
 
 const BalanceText = styled(Text)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -146,13 +232,34 @@ const BalanceText = styled(Text)`
   `};
 `
 
+const Title = styled.a`
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  justify-self: flex-start;
+  margin-right: 12px;
 
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    justify-self: center;
+  `};
+
+  :hover {
+    cursor: pointer;
+  }
+`
+
+const UniIcon = styled.div`
+  transition: transform 0.3s ease;
+  :hover {
+    transform: scale(1.1);
+  }
+`
 
 const activeClassName = 'ACTIVE'
 export const StyledAnchorLink = styled.a`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
-  border-radius: .75rem;
+  border-radius: 3rem;
   outline: none;
   cursor: pointer;
   text-decoration: none;
@@ -163,7 +270,7 @@ export const StyledAnchorLink = styled.a`
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: .75rem;
+    border-radius: 12px;
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -173,17 +280,21 @@ export const StyledAnchorLink = styled.a`
     color: ${({ theme }) => darken(0.1, theme.text1)};
     text-decoration: none;
   }
-`
+
+:hover,
+:focus {
+  color: ${({ theme }) => darken(0.1, theme.text1)};
+}`
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName,
 })`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
-  border-radius: .75rem;
+  border-radius: 3rem;
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.text2};
   font-size: 1rem;
   font-weight: 500;
   padding: 8px 12px;
@@ -197,23 +308,65 @@ const StyledNavLink = styled(NavLink).attrs({
   `};
 
   &.${activeClassName} {
-    border-radius: .75rem;
+    border-radius: 12px;
     font-weight: 600;
     justify-content: center;
     color: ${({ theme }) => theme.text1};
-    
+    background-color: ${({ theme }) => theme.bg0};
   }
 
-  :hover {
-    background-color: ${({ theme }) => theme.andyBG};
-    color: ${({ theme }) => theme.text1};
-  },
+  :hover,
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
   }
 `
 
+const StyledInput = styled.input`
+  * {
+    display: flex;
+    max-width: 275px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #eaeaeb;
+    border: none;
+    color: #222;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 15px 45px 15px 15px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 3px 15px #b8c6db;
+    -moz-box-shadow: 0 3px 15px #b8c6db;
+    -webkit-box-shadow: 0 3px 15px #b8c6db;
+  }
+`
 
+const StyledExternalLink = styled(ExternalLink).attrs({
+  activeClassName,
+}) <{ isActive?: boolean }>`
+  ${({ theme }) => theme.flexRowNoWrap}
+  align-items: left;
+  border-radius: 3rem;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text2};
+  font-size: 1rem;
+  width: fit-content;
+  margin: 0 12px;
+  font-weight: 700;
+
+  &.${activeClassName} {
+    border-radius: 12px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.text1};
+  }
+
+  :hover,
+  :focus {
+    color: ${({ theme }) => darken(0.1, theme.text1)};
+    text-decoration: none;
+  }
+`
 
 export default function Header() {
   // state
@@ -295,43 +448,6 @@ export default function Header() {
     setShowETHValue(visible);
   }, [])
 
-
-  const MobileTabs = () => {
-    const { pathname } = useLocation()
-    const { chainId } = useActiveWeb3React()
-   
-  
-    const isPoolActive =
-      pathname.startsWith('/pool') ||
-      pathname.startsWith('/add') ||
-      pathname.startsWith('/remove') ||
-      pathname.startsWith('/increase') ||
-      pathname.startsWith('/find')
-
-    const isChartsActive =
-      pathname.startsWith('/selective') ||
-      pathname.startsWith('/selective-charts') ||
-      pathname.startsWith('/selective-charting')
-  
-    return (
-      <>
-        <MenuItem href="/swap" isActive={pathname.startsWith('/swap')}>
-          <Trans>Swap</Trans>
-        </MenuItem>
-        
-        
-        <MenuItem href="/pool" id={'pool-nav-link'} isActive={isPoolActive}>
-          <Trans>Pool</Trans>
-        </MenuItem>
-
-        <MenuItem href="/selective-charting" id={`chart-nav-link`} isActive={isChartsActive}>
-            <Trans>Charts</Trans>
-          </MenuItem>
-
-      </>
-    )
-  }
-
   // hooks
   useInterval(promise, 45000, true)
   const { account, chainId } = useActiveWeb3React()
@@ -339,25 +455,23 @@ export default function Header() {
   const [darkMode] = useDarkModeManager()
   const theme = useTheme()
 
- 
-  
   return (
     <>
-    <nav className={styles.nav}>
-        <Box display="flex" height="full" flexWrap="nowrap" alignItems="stretch">
-          <Box className={styles.leftSideContainer}>
-            <Box as="a" href="#/swap" className={styles.logoContainer}>
+      <HeaderFrame showBackground={scrollY > 45}>
+        <Title style={{ textDecoration: "none" }} href="/">
+          <UniIcon>
             <img
-              width={isMobile ? '35px' : '50px'}
+              width={isMobile ? '50px' : '70px'}
               src={logo}
               alt="logo"
             />
-            </Box>
-            <FlRow gap="8" display={{ sm: 'none', lg: 'flex' }}>
-        
+          </UniIcon>
+        </Title>
+        <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             <Trans>Swap</Trans>
           </StyledNavLink>
+
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -385,11 +499,10 @@ export default function Header() {
             pathname.startsWith('/selective-charting')
           } id={`chart-nav-link`} to={'/selective-charting'}>
             <Trans>Charts</Trans>
+            {/* <Trans>Charts <sub>↗</sub></Trans> */}
           </StyledNavLink>
-          </FlRow>
-          </Box>
 
-          {/* <div
+          <div
             style={{
               position: 'relative',
               justifyContent: 'center',
@@ -429,37 +542,14 @@ export default function Header() {
                   display: width <= 400 ? 'none' : 'inline-block'
                 }} />
             }
-          </div> */}
-      
+          </div>
+        </HeaderLinks>
 
-        
-  
-          
-           {/*
-           //Needs more work
-           <Box className={styles.middleContainer}>
-        <div><HeaderPairSearch /></div>
-        </Box> */}
-        
-        {/* 
-        <Box className={styles.rightSideContainer}>
-            <FlRow gap="12">
-              <Box display={{ sm: 'flex', xl: 'none' }}>
-              <div><HeaderPairSearch /></div>
-              </Box>
-              
-              </FlRow>
- */}
-
-
-        
-        <FlRow gap="12">
-        <Box display={{ sm: 'none', lg: 'flex' }}>
-              {isMobile? '' : <Menu />}
-              </Box>
-            <Box display={{ sm: 'flex', lg: 'flex' }}>
+        <HeaderControls>
+          <HeaderElement>
             {!!account ? <NetworkCard /> : ''}
-            <BurntKiba style={{ margin: '12px' }} />
+            <BurntKiba />
+
             <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
               {!isMobile && (account && userEthBalance ? <small style={{ position: 'relative', left: 5, cursor: 'pointer' }}>
                 {showETHValue && <Eye style={{ width: 19, height: 19 }} onClick={setEThVisible} />}
@@ -468,24 +558,16 @@ export default function Header() {
               {account && userEthBalance ? (
                 <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
                   <Trans>{showETHValue ? userEthBalance?.toSignificant(3) : '...'} ETH</Trans>
-                 </BalanceText>
+                </BalanceText>
               ) : null}
-              <Web3Status />
 
+              <Web3Status />
             </AccountElement>
-            </Box>
-            </FlRow>
-          </Box>
-        
-      </nav>
-      <Box className={styles.mobileBottomBar}>
-        <MobileTabs />
-        <Box marginY="4">
-        {isMobile? <MenuDropdown /> : null }
-        </Box>
-      </Box>
-      
-      
+
+            <Menu />
+          </HeaderElement>
+        </HeaderControls>
+      </HeaderFrame>
     </>
   )
 }

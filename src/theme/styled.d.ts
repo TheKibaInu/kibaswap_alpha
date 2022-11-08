@@ -12,6 +12,8 @@ export interface Colors {
   text3: Color
   text4: Color
   text5: Color
+  textPrimary: Color
+  textSecondary: Color
 
   // backgrounds / greys
   bg0: Color
@@ -22,8 +24,9 @@ export interface Colors {
   bg5: Color
   bg6: Color
   bgSwapHeader: Color
-
+  //specialtycolors
   modalBG: Color
+  andyBG: Color
   advancedBG: Color
 
   //blues

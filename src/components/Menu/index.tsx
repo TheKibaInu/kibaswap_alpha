@@ -36,6 +36,7 @@ import { useDarkModeManager } from 'state/user/hooks'
 import { useLocationLinkProps } from 'hooks/useLocationLinkProps'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useTheme from 'hooks/useTheme'
+import { darken } from 'polished'
 
 export enum FlyoutAlignment {
   LEFT = 'LEFT',
@@ -56,29 +57,19 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 38px;
-  background-color: ${({ theme }) => theme.bg0};
-  border: 1px solid ${({ theme }) => theme.bg0};
-
   padding: 0.15rem 0.5rem;
-  border-radius: 12px;
+  border-radius: .75rem;
 
-  :hover,
-  :focus {
-    cursor: pointer;
-    outline: none;
-    border: 1px solid ${({ theme }) => theme.bg3};
-  }
+  :hover{
+  background-color: ${({ theme }) => theme.andyBG};
+  },
+  
 
   svg {
     margin-top: 2px;
   }
 `
 
-const UNIbutton = styled(ButtonPrimary)`
-  background-color: ${({ theme }) => theme.bg3};
-  background: ${({ theme }) => theme.bg0};
-  border: none;
-`
 
 const StyledMenu = styled.div`
   margin-left: 0.5rem;
@@ -188,7 +179,6 @@ const ToggleMenuItem = styled.button`
   }
 `
 
-const CODE_LINK = 'https://github.com/Uniswap/uniswap-interface'
 
 function LanguageMenuItem({ locale, active, key }: { locale: SupportedLocale; active: boolean; key: string }) {
   const { to, onClick } = useLocationLinkProps(locale)
@@ -225,7 +215,6 @@ export default function Menu() {
   const open = useModalOpen(ApplicationModal.MENU)
   const toggle = useToggleModal(ApplicationModal.MENU)
   useOnClickOutside(node, open ? toggle : undefined)
-  const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
   const [darkMode, toggleDarkMode] = useDarkModeManager()
   const [menu, setMenu] = useState<'main' | 'lang'>('main')
   const theme = useTheme()
@@ -236,7 +225,7 @@ export default function Menu() {
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
-      <StyledMenuButton style={{ background: theme.bg0 }} onClick={toggle}>
+      <StyledMenuButton onClick={toggle}>
         <StyledMenuIcon />
       </StyledMenuButton>
 
@@ -280,7 +269,7 @@ export default function Menu() {
                       </div>
                       <Info opacity={0.6} size={16} />
                     </MenuItem>
-                    <MenuItem href="https://docs.kibainu.com">
+                    <MenuItem href="https://docs.kiba.tools">
                       <div>
                         <Trans>Docs</Trans>
                       </div>

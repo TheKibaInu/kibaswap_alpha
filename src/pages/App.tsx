@@ -55,7 +55,6 @@ import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import VotePageV2 from './Vote/VotePageV2'
 import Web3ReactManager from '../components/Web3ReactManager'
-import bg4 from '../assets/images/bg4.jpg'
 import btok from '../assets/sponsors/btok2.svg'
 import cart from '../assets/sponsors/cryptocart.svg'
 import logo from '../assets/images/download.png'
@@ -64,6 +63,7 @@ import { useDarkModeManager } from 'state/user/hooks'
 import useTheme from 'hooks/useTheme'
 import { useWalletModalToggle } from 'state/application/hooks';
 import { useWeb3React } from '@web3-react/core'
+import { isMobile } from 'react-device-detect';
 
 const AppWrapper = styled.div<{ embedModel: EmbedModel }>`
   display: flex;
@@ -267,8 +267,8 @@ export default function App() {
 
                       <Route component={RedirectPathToSwapOnly} />
                     </Switch>
-                    {embedModel.embedMode == false && (
-                      <AppBody style={{
+                    {/* {embedModel.embedMode == false && (
+                       <AppBody style={{
                         boxShadow:
                           'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
                         position: 'relative',
@@ -331,7 +331,8 @@ export default function App() {
                             </ScrollableRow>
                           </FixedContainer>
                         </Marquee>
-                      </AppBody>)}
+                      </AppBody>)} */}
+                      
 
                     {embedModel.embedMode == true && (
                       <Badge style={{ borderRadius: 0, width: '100%', background: embedModel?.theme == 'dark' ? "#222" : '#fff' }}>

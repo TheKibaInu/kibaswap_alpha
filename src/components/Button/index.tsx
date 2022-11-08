@@ -125,7 +125,7 @@ export const ButtonGray = styled(Base)`
 `
 
 export const ButtonSecondary = styled(Base)`
-  border: 1px solid ${({ theme }) => theme.primary4};
+
   color: ${({ theme }) => theme.primary1};
   background-color: transparent;
   font-family: 'Poppins';

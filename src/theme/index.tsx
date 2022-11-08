@@ -14,6 +14,7 @@ export * from './components'
 
 type TextProps = Omit<TextPropsOriginal, 'css'>
 
+
 export const MEDIA_WIDTHS = {
   upToExtraSmall: 500,
   upToSmall: 720,
@@ -49,6 +50,9 @@ function colors(darkMode: boolean): Colors {
     text3: darkMode ? '#fff' : '#6E727D',
     text4: darkMode ? '#fff' : '#18181E',
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    textPrimary: darkMode ? '#fff' : '#18181E',
+    textSecondary: darkMode ? '#fff' : '#565A69',
+
 
     // backgrounds / greys
     bg0: darkMode ? '#252632' : '#f5f5f5',
@@ -62,6 +66,7 @@ function colors(darkMode: boolean): Colors {
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
+    andyBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.1)',
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
