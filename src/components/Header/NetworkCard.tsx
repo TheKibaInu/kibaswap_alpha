@@ -143,7 +143,9 @@ export const NetworkInfo = styled.button<{ chainId: SupportedChainId }>`
   height: 38px;
   padding: 0.25rem;
 
-  :hover,
+  :hover{
+    background-color: ${({ theme }) => theme.andyBG};
+    },
   :focus {
     cursor: pointer;
     outline: none;
