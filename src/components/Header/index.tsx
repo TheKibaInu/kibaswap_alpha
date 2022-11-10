@@ -459,17 +459,10 @@ export default function Header() {
               </Box>
             <Box display={{ sm: 'flex', lg: 'flex' }}>
             {!!account ? <NetworkCard /> : ''}
-            <BurntKiba style={{ margin: '12px' }} />
+            </Box>
+            <Box display={{ sm: 'flex', lg: 'flex' }}>
             <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
-              {!isMobile && (account && userEthBalance ? <small style={{ position: 'relative', left: 5, cursor: 'pointer' }}>
-                {showETHValue && <Eye style={{ width: 19, height: 19 }} onClick={setEThVisible} />}
-                {!showETHValue && <EyeOff style={{ width: 19, height: 19 }} onClick={setEThVisible} />}
-              </small> : null)}
-              {account && userEthBalance ? (
-                <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
-                  <Trans>{showETHValue ? userEthBalance?.toSignificant(3) : '...'} ETH</Trans>
-                 </BalanceText>
-              ) : null}
+              
               <Web3Status />
 
             </AccountElement>
