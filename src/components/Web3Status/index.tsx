@@ -36,6 +36,7 @@ const IconWrapper = styled.div<{ size?: number }>`
 
 const Web3StatusGeneric = styled(ButtonOutlined)`
   ${({ theme }) => theme.flexRowNoWrap}
+  border: transparent;
   width: 100%;
   align-items: center;
   padding: 0.35rem;
@@ -63,7 +64,11 @@ const Web3StatusConnect = styled(Web3StatusGeneric) <{ faded?: boolean }>`
   color: ${({ theme }) => theme.primaryText1};
   font-weight: 400;
 
-  :hover,
+  :hover{
+    background-color: ${({ theme }) => darken(0.15, theme.primary5)};
+
+
+  },
   :focus {
     color: ${({ theme }) => theme.primaryText1};
     font-weight: 500;
@@ -81,6 +86,7 @@ const Web3StatusConnect = styled(Web3StatusGeneric) <{ faded?: boolean }>`
 
       :hover,
         font-weight: 500;
+
 
       :focus {
         color: ${({ theme }) => darken(0.05, theme.primaryText1)};
@@ -103,11 +109,9 @@ const Web3StatusConnected = styled(Web3StatusGeneric) <{ pending?: boolean }>`
   font-size: 16px;
   font-weight: 600;
   :hover,
-  :focus {
-    border: 1px solid ${({ theme }) => darken(0.05, theme.bg3)};
 
     :focus {
-      border: 1px solid ${({ pending, theme }) => (pending ? darken(0.1, theme.primary1) : darken(0.1, theme.bg2))};
+      border: 1px solid ${({ pending, theme }) => (pending ? darken(0.1, theme.primary1) : darken(0.1, theme.bg1))};
     }
   }
 `

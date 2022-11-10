@@ -137,7 +137,7 @@ export default function SwapVolume() {
   return (
     <PollContainer darkMode={darkMode} display={display}>
       <div style={{ background:theme.bg0, width:210, height: !open ? 13 : 11, zIndex:0, top: 0, left: 0, cursor: 'pointer', position: 'relative' }}>
-        <TYPE.link onClick={toggleOpen}  style={{ fontWeight:500,  fontSize:9, position: 'absolute', right: 5, bottom: open ? -2 : 0 }} >Toggle Stats<Icon color={theme.text1} size={12} /></TYPE.link>
+        <TYPE.link onClick={toggleOpen}  style={{ fontWeight:500,  color: theme.text1, fontSize:9, position: 'absolute', right: 5, bottom: open ? -2 : 0 }} >Toggle Stats<Icon color={theme.text1} size={12} /></TYPE.link>
       </div>
       
       {open && (
