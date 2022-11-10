@@ -130,9 +130,9 @@ const ButtonMenuItem = styled.button`
 `
 export const NetworkInfo = styled.button<{ chainId: SupportedChainId }>`
   align-items: center;
-  background: ${({ theme }) => theme.bg0};
+  background: transparent;
   border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.bg1};
+  border: transparent;
   color: ${({ theme }) => theme.text1};
   display: flex;
   flex-direction: row;
@@ -147,7 +147,28 @@ export const NetworkInfo = styled.button<{ chainId: SupportedChainId }>`
   :focus {
     cursor: pointer;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.bg3};
+    border: transparent;
+  }
+`
+export const BurntPoll = styled.button<{ chainId: SupportedChainId }>`
+  align-items: center;
+  background: transparent;
+  border-radius: 12px;
+  border: transparent;
+  color: ${({ theme }) => theme.text1};
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin: 0;
+  height: 38px;
+  font-family: inherit;
+  font-weight: 500;
+
+  :hover,
+  :focus {
+    cursor: pointer;
+    outline: none;
+    
   }
 `
 const NetworkName = styled.div<{ chainId: SupportedChainId }>`

@@ -47,12 +47,12 @@ export const L1_CHAIN_IDS = [
   SupportedChainId.BINANCE
 ] as const
 
-export const FlashBotsFrontRunRpc: AddNetworkInfo =   {
+export const FlashBotsFrontRunRpc: AddNetworkInfo = {
   rpcUrl: `https://rpc.flashbots.net/fast`,
   nativeCurrency: {
     symbol: "ETH",
     decimals: 18,
-    name:"Ethereum"
+    name: "Ethereum"
   }
 }
 
@@ -137,9 +137,9 @@ export type ChainInfoMap = { readonly [chainId: number]: L1ChainInfo | L2ChainIn
 } &
   { readonly [chainId in SupportedL1ChainId]: L1ChainInfo }
 
- 
+
 export const CHAIN_INFO: ChainInfoMap = {
-  [SupportedChainId.BINANCE]:  {
+  [SupportedChainId.BINANCE]: {
     networkType: NetworkType.L1,
     blockWaitMsBeforeWarning: ms`10m`,
     bridge: 'https://wallet.polygon.technology/bridge',
@@ -149,7 +149,7 @@ export const CHAIN_INFO: ChainInfoMap = {
     label: 'BSC',
     logoUrl: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png',
     addNetworkInfo: {
-      nativeCurrency: {name: "Binance Token", symbol: "BNB", decimals: 18},
+      nativeCurrency: { name: "Binance Token", symbol: "BNB", decimals: 18 },
       rpcUrl: INFURA_NETWORK_URLS[SupportedChainId.BINANCE]
     },
   },
@@ -170,7 +170,7 @@ export const CHAIN_INFO: ChainInfoMap = {
     docs: 'https://docs.uniswap.org/',
     explorer: 'https://etherscan.io/',
     infoLink: 'https://info.uniswap.org/#/',
-    label: 'ETH',
+    label: 'Ethereum',
     logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png',
     addNetworkInfo: {
       nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
@@ -319,5 +319,5 @@ export const CHAIN_INFO: ChainInfoMap = {
       rpcUrl: 'https://rpc-endpoints.superfluid.dev/mumbai',
     },
   },
-  
+
 }

@@ -6,7 +6,7 @@ import { ExternalLink, TYPE } from '../../theme'
 import { abbreviateNumber, useTotalSwapVolume } from 'components/BurntKiba'
 import styled, { keyframes } from 'styled-components/macro'
 import { useEffect, useState } from 'react'
-
+import { PollingBurntKiba } from 'components/PollingBurntKiba'
 import Loader from 'components/Loader'
 import React from 'react'
 import { Trans } from '@lingui/react'
@@ -27,7 +27,7 @@ const StyledEthPolling = styled.div`
   display: flex;
   align-items: center;
   padding: 1rem;
-  color: ${({ theme }) => theme.green1};
+  color: ${({ theme }) => theme.text1};
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     display: none;
@@ -36,7 +36,7 @@ const StyledEthPolling = styled.div`
 const StyledPolling = styled.div`
   display:flex;
   padding: 1rem;
-  color: ${({ theme }) => theme.green1};
+  color: ${({ theme }) => theme.text1};
   align-items:center;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     display: none;
@@ -139,8 +139,12 @@ export default function SwapVolume() {
       <div style={{ background:theme.bg0, width:210, height: !open ? 13 : 11, zIndex:0, top: 0, left: 0, cursor: 'pointer', position: 'relative' }}>
         <TYPE.link onClick={toggleOpen}  style={{ fontWeight:500,  fontSize:9, position: 'absolute', right: 5, bottom: open ? -2 : 0 }} >Toggle Stats<Icon color={theme.text1} size={12} /></TYPE.link>
       </div>
+      
       {open && (
         <React.Fragment>
+          <div style={{ display: 'flex', alignItems: 'center', paddingTop: 10, paddingBottom: 10 }}>
+          <PollingBurntKiba/>
+          </div>
           <StyledEthPolling>
             {!prices || isNaN(+ethPrice) ? (
               <>
