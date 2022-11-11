@@ -15,7 +15,7 @@ export const lightTheme22: Theme22 = {
     backgroundOutline: `rgba(94,104,135,0.24)`,
     backgroundSurface: '#FFFFFF',
 
-    modalBackdrop: 'rgba(0, 0, 0, 0.3)',
+    modalBackdrop: 'rgba(0, 0, 0, 0.1)',
 
     stateOverlayHover: `rgba(153,161,189,0.08)`,
     green: vars.color.green400,

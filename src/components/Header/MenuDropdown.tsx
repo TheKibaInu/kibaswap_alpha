@@ -16,28 +16,10 @@ import { ReactNode, useReducer, useRef, useState } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components/macro'
 import {
-  BarChart2,
-  BookOpen,
-  Check,
-  ChevronLeft,
   ChevronRight,
-  Code,
-  DollarSign,
-  Info,
-  List,
-  Lock,
-  MessageCircle,
   Moon,
-  PieChart,
-  Star,
   Sun,
-  Tool,
-  Twitter,
 } from 'react-feather'
-
-
-import { useToggleModal } from '../../state/application/hooks'
-import { ApplicationModal } from 'state/application/actions'
 import * as styles from './MenuDropdown.css'
 import { NavDropdown } from './NavDropdown'
 import { NavIcon } from './NavIcon'
@@ -170,25 +152,8 @@ export const MenuDropdown = () => {
         {isOpen && (
           <NavDropdown top={{ sm: 'unset', lg: '56' }} bottom={{ sm: '56', lg: 'unset' }} right="0">
             <Column gap="16">
-              <Column paddingX="8" gap="4">
-                <PrimaryMenuRow to="/vote" close={toggleOpen}>
-                  <Icon>
-                    <GovernanceIcon width={24} height={24} />
-                  </Icon>
-                  <PrimaryMenuRow.Text>
-                    <Trans>Vote in governance</Trans>
-                  </PrimaryMenuRow.Text>
-                </PrimaryMenuRow>
-                <PrimaryMenuRow href="https://info.uniswap.org/#/">
-                  <Icon>
-                    <BarChartIcon width={24} height={24} />
-                  </Icon>
-                  <PrimaryMenuRow.Text>
-                    <Trans>View more analytics</Trans>
-                  </PrimaryMenuRow.Text>
-                </PrimaryMenuRow>
-              </Column>
-              <Separator />
+              
+           
               <Box
                 display="flex"
                 flexDirection={{ sm: 'row', md: 'column' }}
@@ -196,10 +161,8 @@ export const MenuDropdown = () => {
                 alignItems={{ sm: 'center', md: 'flex-start' }}
                 paddingX="8"
               >
-                <SecondaryLinkedText href="https://help.uniswap.org/en/">
-                  <Trans>Help center</Trans> ↗
-                </SecondaryLinkedText>
-                <SecondaryLinkedText href="https://docs.kibainu.com/">
+              
+                <SecondaryLinkedText href="">
                   <Trans>Documentation</Trans> ↗
                 </SecondaryLinkedText>
                
@@ -218,7 +181,7 @@ export const MenuDropdown = () => {
                     </ToggleMenuItem>
               </Box>
               <IconRow>
-                <Icon href="https://discord.com/invite/FCfyBSbCU5">
+                <Icon href="https://discord.com/invite/TU8NGUquPc">
                   <DiscordIconMenu
                     className={styles.hover}
                     width={24}
@@ -226,7 +189,7 @@ export const MenuDropdown = () => {
                     color={themeVars.colors.textSecondary}
                   />
                 </Icon>
-                <Icon href="https://twitter.com/Uniswap">
+                <Icon href="https://twitter.com/kibainuworld">
                   <TwitterIconMenu
                     className={styles.hover}
                     width={24}
@@ -234,7 +197,7 @@ export const MenuDropdown = () => {
                     color={themeVars.colors.textSecondary}
                   />
                 </Icon>
-                <Icon href="https://github.com/Uniswap">
+                <Icon href="https://github.com/thekibainu">
                   <GithubIconMenu
                     className={styles.hover}
                     width={24}

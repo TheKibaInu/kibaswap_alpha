@@ -18,7 +18,8 @@ export const darkTheme22: Theme22 = {
         backgroundOutline: `rgba(153,161,189,0.24)`,
         backgroundSurface: vars.color.grey900,
 
-        modalBackdrop: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7))',
+
+        modalBackdrop: 'rgba(0,0,0,0.425)',
 
         stateOverlayHover: `rgba(153,161,189,0.08)`,
 

@@ -237,7 +237,7 @@ export default function Menu() {
             case 'main':
             default:
               return (
-                <>
+                
                   <MenuFlyout>
                     <InternalLinkMenuItem to="/fomo">
                       <div>
@@ -292,7 +292,7 @@ export default function Menu() {
                       <ChevronRight size={16} opacity={0.6} />
                     </ToggleMenuItem>
                   </MenuFlyout>
-                </>
+                
               )
           }
         })()}

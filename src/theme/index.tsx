@@ -7,7 +7,13 @@ import styled, {
   css,
 } from 'styled-components/macro'
 
-import { Colors } from './styled'
+import { cssStringFromTheme } from './a_themes/cssStringFromTheme'
+import { darkTheme22} from './a_themes/a_darktheme'
+import { lightTheme22 } from './a_themes/a_lighttheme'
+import { Acolors as ColorsPalette, colorsDark, colorsLight } from './colors'
+import { opacify } from './utils'
+
+import { AllColors, Colors, ThemeColors } from './styled'
 import { useIsDarkMode } from '../state/user/hooks'
 
 export * from './components'
@@ -20,6 +26,15 @@ export const MEDIA_WIDTHS = {
   upToSmall: 720,
   upToMedium: 960,
   upToLarge: 1280,
+}
+
+ const BREAKPOINTS = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  xxl: 1536,
+  xxxl: 1920,
 }
 
 const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } = Object.keys(MEDIA_WIDTHS).reduce(
@@ -37,15 +52,79 @@ const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } 
 const white = '#FFFFFF'
 const black = '#000000'
 
-function colors(darkMode: boolean): Colors {
-  const newLocal = '#252632'
+function uniswapThemeColors(darkMode: boolean): ThemeColors {
   return {
+    userThemeColor: darkMode ? colorsDark.userThemeColor : colorsLight.userThemeColor,
+
+    backgroundBackdrop: darkMode ? colorsDark.backgroundBackdrop : colorsLight.backgroundBackdrop,
+    backgroundSurface: darkMode ? colorsDark.backgroundSurface : colorsLight.backgroundSurface,
+    backgroundModule: darkMode ? colorsDark.backgroundModule : colorsLight.backgroundModule,
+    backgroundFloating: darkMode ? colorsDark.backgroundFloating : colorsLight.backgroundFloating,
+    backgroundInteractive: darkMode ? colorsDark.backgroundInteractive : colorsLight.backgroundInteractive,
+    backgroundOutline: darkMode ? colorsDark.backgroundOutline : colorsLight.backgroundOutline,
+    backgroundScrim: darkMode ? colorsDark.backgroundScrim : colorsLight.backgroundScrim,
+
+    textPrimary: darkMode ? colorsDark.textPrimary : colorsLight.textPrimary,
+    textSecondary: darkMode ? colorsDark.textSecondary : colorsLight.textSecondary,
+    textTertiary: darkMode ? colorsDark.textTertiary : colorsLight.textTertiary,
+
+    accentAction: darkMode ? colorsDark.accentAction : colorsLight.accentAction,
+    accentActive: darkMode ? colorsDark.accentActive : colorsLight.accentActive,
+    accentSuccess: darkMode ? colorsDark.accentSuccess : colorsLight.accentSuccess,
+    accentWarning: darkMode ? colorsDark.accentWarning : colorsLight.accentWarning,
+    accentFailure: darkMode ? colorsDark.accentFailure : colorsLight.accentFailure,
+    accentCritical: darkMode ? colorsDark.accentCritical : colorsLight.accentCritical,
+
+    accentActionSoft: darkMode ? colorsDark.accentActionSoft : colorsLight.accentActionSoft,
+    accentActiveSoft: darkMode ? colorsDark.accentActiveSoft : colorsLight.accentActiveSoft,
+    accentSuccessSoft: darkMode ? colorsDark.accentSuccessSoft : colorsLight.accentSuccessSoft,
+    accentWarningSoft: darkMode ? colorsDark.accentWarningSoft : colorsLight.accentWarningSoft,
+    accentFailureSoft: darkMode ? colorsDark.accentFailureSoft : colorsLight.accentFailureSoft,
+
+    accentTextDarkPrimary: darkMode ? colorsDark.accentTextDarkPrimary : colorsLight.accentTextDarkPrimary,
+    accentTextDarkSecondary: darkMode ? colorsDark.accentTextDarkSecondary : colorsLight.accentTextDarkSecondary,
+    accentTextDarkTertiary: darkMode ? colorsDark.accentTextDarkTertiary : colorsLight.accentTextDarkTertiary,
+
+    accentTextLightPrimary: darkMode ? colorsDark.accentTextLightPrimary : colorsLight.accentTextLightPrimary,
+    accentTextLightSecondary: darkMode ? colorsDark.accentTextLightSecondary : colorsLight.accentTextLightSecondary,
+    accentTextLightTertiary: darkMode ? colorsDark.accentTextLightTertiary : colorsLight.accentTextLightTertiary,
+
+    white: ColorsPalette.white,
+    black: ColorsPalette.black,
+
+    // chain colors are same for light/dark mode
+    chain_1: colorsDark.chain_1,
+    chain_3: colorsDark.chain_3,
+    chain_4: colorsDark.chain_4,
+    chain_5: colorsDark.chain_5,
+    chain_10: colorsDark.chain_10,
+    chain_137: colorsDark.chain_137,
+    chain_42: colorsDark.chain_42,
+    chain_420: colorsDark.chain_420,
+    chain_42161: colorsDark.chain_42161,
+    chain_421611: colorsDark.chain_421611,
+    chain_80001: colorsDark.chain_80001,
+
+    shallowShadow: darkMode ? colorsDark.shallowShadow : colorsLight.shallowShadow,
+    deepShadow: darkMode ? colorsDark.deepShadow : colorsLight.deepShadow,
+    hoverState: opacify(24, ColorsPalette.blue200),
+    hoverDefault: opacify(8, ColorsPalette.gray200),
+    stateOverlayHover: darkMode ? colorsDark.stateOverlayHover : colorsLight.stateOverlayHover,
+    stateOverlayPressed: darkMode ? colorsDark.stateOverlayPressed : colorsLight.stateOverlayPressed,
+  }
+}
+
+
+
+function KibaColors(darkMode: boolean): Colors {
+  return {
+    darkMode,
     // base
     white,
     black,
 
     // text
-    text1: darkMode ? '#fff' : '#18181E',
+    text1: darkMode ? '#fff' : '#0e121c',
     text2: darkMode ? '#fff' : '#565A69',
     text3: darkMode ? '#fff' : '#6E727D',
     text4: darkMode ? '#fff' : '#18181E',
@@ -63,6 +142,7 @@ function colors(darkMode: boolean): Colors {
     bg5: darkMode ? '#4F4F62' : '#fff',
     bg6: darkMode ? '#30313D' : 'rgba(255,255,255,0.8)',
     bgSwapHeader: darkMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.08)',
+    bgmenu: darkMode ? '#F76C1D' : '#fff',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
@@ -92,7 +172,7 @@ function colors(darkMode: boolean): Colors {
     yellow1: '#E3A507',
     yellow2: '#FF8F00',
     yellow3: '#F3B71E',
-    blue1: darkMode ? newLocal : '#0068FC',
+    blue1: darkMode ? '#252632' : '#0068FC',
     blue2: darkMode ? '#5199FF' : '#0068FC',
     error: darkMode ? '#FD4040' : '#DF1F38',
     success: darkMode ? '#779681' : '#779681',
@@ -115,7 +195,8 @@ function colors(darkMode: boolean): Colors {
 
 function theme(darkMode: boolean): DefaultTheme {
   return {
-    ...colors(darkMode),
+    ...uniswapThemeColors(darkMode),
+    ...KibaColors(darkMode),
 
     grids: {
       sm: 8,
@@ -223,5 +304,9 @@ html {
 
 a {
  color: ${({ theme }) => theme.blue1}; 
+}
+
+:root {
+  ${({ theme }) => (theme.darkMode ? cssStringFromTheme(darkTheme22) : cssStringFromTheme(lightTheme22))}
 }
 `

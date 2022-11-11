@@ -1,10 +1,73 @@
 import { FlattenSimpleInterpolation, ThemedCssFunction } from 'styled-components/macro'
 
 export type Color = string
-export interface Colors {
+export type AllColors = ThemeColors | Colors
+
+export interface ThemeColors {
+  userThemeColor: string
+
+  backgroundBackdrop: Color
+  backgroundSurface: Color
+  backgroundModule: Color
+  backgroundFloating: Color
+  backgroundInteractive: Color
+  backgroundOutline: Color
+  backgroundScrim: Color
+
+  textPrimary: Color
+  textSecondary: Color
+  textTertiary: Color
+
+  accentAction: Color
+  accentActive: Color
+  accentSuccess: Color
+  accentWarning: Color
+  accentFailure: Color
+  accentCritical: Color
+
+  accentActionSoft: Color
+  accentActiveSoft: Color
+  accentSuccessSoft: Color
+  accentWarningSoft: Color
+  accentFailureSoft: Color
+
+  accentTextDarkPrimary: Color
+  accentTextDarkSecondary: Color
+  accentTextDarkTertiary: Color
+
+  accentTextLightPrimary: Color
+  accentTextLightSecondary: Color
+  accentTextLightTertiary: Color
+
   // base
   white: Color
   black: Color
+
+  chain_1: Color
+  chain_3: Color
+  chain_4: Color
+  chain_5: Color
+  chain_10: Color
+  chain_137: Color
+  chain_42: Color
+  chain_420: Color
+  chain_42161: Color
+  chain_421611: Color
+  chain_80001: Color
+
+  shallowShadow: Color
+  deepShadow: Color
+  hoverState: Color
+  hoverDefault: Color
+  stateOverlayHover: Color
+  stateOverlayPressed: Color
+}
+export interface Colors {
+  darkMode: boolean
+
+  white: Color
+  black: Color
+
 
   // text
   text1: Color
@@ -24,6 +87,7 @@ export interface Colors {
   bg5: Color
   bg6: Color
   bgSwapHeader: Color
+  bgmenu: Color
   //specialtycolors
   modalBG: Color
   andyBG: Color
