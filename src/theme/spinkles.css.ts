@@ -1,6 +1,8 @@
 import { createGlobalTheme, createGlobalThemeContract } from '@vanilla-extract/css'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 
+
+
 const themeContractValues = {
   colors: {
     accentFailure: '',
@@ -173,7 +175,7 @@ export const vars = createGlobalTheme(':root', {
     green400: '#1A9550',
     violet200: '#BDB8FA',
     violet400: '#7A7BEB',
-    grey900: '#0E111A',
+    grey900: '#0e121c',
     grey800: '#141B2B',
     grey700: '#293249',
     grey500: '#5E6887',
@@ -248,7 +250,7 @@ export const vars = createGlobalTheme(':root', {
     '500': '500ms',
   },
   fonts: {
-    body: 'Inter, sans-serif',
+    body: 'Poppins, sans-serif',
     heading: 'Adieu, sans-serif',
   },
 })

@@ -4,10 +4,7 @@ import { sprinkles } from 'theme/spinkles.css'
 
 const baseNavDropdown = style([
   sprinkles({
-    background: 'whitesmoke',
-    borderStyle: 'solid',
-    borderColor: 'backgroundOutline',
-    borderWidth: '1px',
+    background: 'backgroundSurface',
     paddingBottom: '8',
     paddingTop: '8',
     zIndex: '2',
