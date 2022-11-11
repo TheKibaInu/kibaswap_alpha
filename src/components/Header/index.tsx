@@ -22,9 +22,11 @@ import useInterval from 'hooks/useInterval'
 import useTheme from 'hooks/useTheme'
 import { Box } from 'components/AndyComponents/Box'
 import { FlRow } from 'components/AndyComponents/Flex'
-
 import * as styles from '../AndyComponents/style.css'
 import { MenuDropdown } from './MenuDropdown'
+import { ToolsDropdown } from './toolsdropdown'
+import { MenuDropdown2 } from './MenuDropdown2'
+
 
 
 
@@ -185,7 +187,7 @@ const StyledNavLink = styled(NavLink).attrs({
   text-decoration: none;
   color: ${({ theme }) => theme.text1};
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   padding: 8px 12px;
   word-break: break-word;
   overflow: hidden;
@@ -210,6 +212,42 @@ const StyledNavLink = styled(NavLink).attrs({
   },
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
+  }
+`
+
+const StyledNavLinkDrop = styled(NavLink).attrs({
+  activeClassName,
+})`
+  ${({ theme }) => theme.flexRowNoWrap}
+  align-items: left;
+  border-radius: .75rem;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text1};
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 6px;
+    font-size: 0.9rem;
+  `};
+
+  &.${activeClassName} {
+    
+    
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.andyBG};
+    color: ${({ theme }) => theme.text1};
+  },
+  :focus {
+    
   }
 `
 
@@ -328,6 +366,9 @@ export default function Header() {
             <Trans>Charts</Trans>
           </MenuItem>
 
+          
+
+
       </>
     )
   }
@@ -386,8 +427,17 @@ export default function Header() {
           } id={`chart-nav-link`} to={'/selective-charting'}>
             <Trans>Charts</Trans>
           </StyledNavLink>
+
+
+          <ToolsDropdown/>
+          
+         
+
+
           </FlRow>
           </Box>
+
+          
 
           {/* <div
             style={{
@@ -455,7 +505,7 @@ export default function Header() {
         
         <FlRow gap="12">
         <Box display={{ sm: 'none', lg: 'flex' }}>
-              {isMobile? '' : <Menu />}
+              {isMobile? '' : <MenuDropdown2 />}
               </Box>
             <Box display={{ sm: 'flex', lg: 'flex' }}>
             {!!account ? <NetworkCard /> : ''}
