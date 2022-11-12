@@ -1,8 +1,6 @@
 import { AlertOctagon, CheckCircle, Eye, EyeOff } from 'react-feather'
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
 import React, { ReactNode, useState } from 'react'
-import { HeaderPairSearch } from './HeaderPairSearch'
-import { BurntKiba } from 'components/BurntKiba'
 import { ExternalLink } from '../../theme'
 import Menu from '../Menu'
 import NetworkCard from './NetworkCard'
@@ -23,9 +21,9 @@ import useTheme from 'hooks/useTheme'
 import { Box } from 'components/AndyComponents/Box'
 import { FlRow } from 'components/AndyComponents/Flex'
 import * as styles from '../AndyComponents/style.css'
-import { MenuDropdown } from './MenuDropdown'
 import { ToolsDropdown } from './toolsdropdown'
-import { MenuDropdown2 } from './MenuDropdown2'
+import { MenuDropdown } from './MenuDropdown'
+import { SearchBarNav } from './HeaderPairSearch'
 
 
 
@@ -366,6 +364,10 @@ export default function Header() {
             <Trans>Charts</Trans>
           </MenuItem>
 
+          {isMobile? <ToolsDropdown /> : null }
+          
+        {isMobile? <MenuDropdown /> : null }
+
           
 
 
@@ -428,12 +430,8 @@ export default function Header() {
             <Trans>Charts</Trans>
           </StyledNavLink>
 
-
-          <ToolsDropdown/>
+          {isMobile? '' : <ToolsDropdown/>}
           
-         
-
-
           </FlRow>
           </Box>
 
@@ -480,16 +478,17 @@ export default function Header() {
                 }} />
             }
           </div> */}
-      
-
-        
-  
-          
-           {/*
-           //Needs more work
+           
            <Box className={styles.middleContainer}>
-        <div><HeaderPairSearch /></div>
-        </Box> */}
+
+        <SearchBarNav/>
+        </Box>
+        
+        <Box className={styles.rightSideContainer}>
+            <FlRow gap="12">
+              <Box display={{ sm: 'flex', xl: 'none' }}>
+                <SearchBarNav />
+              </Box>
         
         {/* 
         <Box className={styles.rightSideContainer}>
@@ -503,9 +502,8 @@ export default function Header() {
 
 
         
-        <FlRow gap="12">
         <Box display={{ sm: 'none', lg: 'flex' }}>
-              {isMobile? '' : <MenuDropdown2 />}
+              {isMobile? '' : <MenuDropdown />}
               </Box>
             <Box display={{ sm: 'flex', lg: 'flex' }}>
             {!!account ? <NetworkCard /> : ''}
@@ -519,12 +517,12 @@ export default function Header() {
             </Box>
             </FlRow>
           </Box>
-        
+        </Box>
       </nav>
       <Box className={styles.mobileBottomBar}>
         <MobileTabs />
         <Box marginY="4">
-        {isMobile? <MenuDropdown /> : null }
+       
         </Box>
       </Box>
       
