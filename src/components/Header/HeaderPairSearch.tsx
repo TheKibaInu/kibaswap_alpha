@@ -1,4 +1,3 @@
-import * as ethers from 'ethers'
 
 import { ArrowUpRight, CheckCircle, Settings, TrendingDown, TrendingUp, X } from 'react-feather'
 import { t } from '@lingui/macro'
@@ -8,8 +7,8 @@ import { CFormInput } from '@coreui/react'
 import { Dots } from 'components/swap/styleds'
 import { LoadingSkeleton } from 'pages/Pool/styleds'
 import { MenuItem } from 'components/SearchModal/styleds'
-import React from 'react'
-import { useReducer, useRef } from 'react'
+import React, { ChangeEvent, useState } from 'react'
+import { useReducer, useRef, useEffect } from 'react'
 import { TYPE } from 'theme'
 import Toggle from '../Toggle'
 import Tooltip from 'components/Tooltip'
@@ -32,6 +31,7 @@ import { NavIcon } from './NavIcon'
 
 import * as styles from './SearchBar.css'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
+import { useLocation } from 'react-router-dom'
 
 type PluralProps = {
   one?: React.ReactNode;
@@ -171,18 +171,21 @@ type Props = {
   label?: string
 }
 
-export const HeaderPairSearch = (props: Props) => {
+
+
+export const SearchBarNav = (props: Props) => {
   const { onPairSelect } = props
   const [isOpen, toggleOpen] = useReducer((state: boolean) => !state, false)
-  const searchRef = useRef<HTMLDivElement>(null)
-  const { chainId } = useActiveWeb3React()
-  const [searchTerm, setSearchTerm] = React.useState('')
-  const searchTermDebounced = useDebounce(searchTerm, 500)
+  const searchRef = useRef<HTMLInputElement>(null)
+  const { pathname } = useLocation()
   const isMobile = useIsMobileSp()
   const isTablet = useIsTabletSp()
   const [fetching, setFetching] = React.useState(false)
-  const [results, setResults] = React.useState<Pair[]>()
+  const { chainId } = useActiveWeb3React()
+  const [searchTerm, setSearchTerm] = React.useState('')
+  const searchTermDebounced = useDebounce(searchTerm, 500)
   const onTermChanged = (event: any) => setSearchTerm(event.target.value)
+  const [results, setResults] = React.useState<Pair[]>()
   const history = useHistory()
   const [routing, setRouting] = React.useState(false)
   const [searchSettings, setSearchSettings] = useUserSearchPrefManager()
@@ -192,14 +195,18 @@ export const HeaderPairSearch = (props: Props) => {
   }
 Plural.displayName = "PluralComponent"
 
-const placeholderText = t`Search tokens`
-const isMobileOrTablet = isMobile || isTablet
 
-useOnClickOutside(searchRef, () => {
-  isOpen && toggleOpen()
-})
+  useOnClickOutside(searchRef, () => {
+    isOpen && toggleOpen()
+  })
 
+  const theme = useTheme()
 
+  const defaultNetworks = [
+    { chainId: 1, network: 'ethereum', includeInResults: true },
+    { chainId: 56, network: 'bsc', includeInResults: true }
+  ]
+  
 const MenuFlyout = styled.span<{ isMobile?: boolean }>`
 min-width: 20.125rem;
 background-color: ${({ theme }) => theme.bg1};
@@ -224,133 +231,123 @@ ${({ theme }) => theme.mediaWidth.upToMedium`
 user-select: none;
 }
 `
-
-const MenuItemStyled = styled(MenuItem)`
-    padding:9px 14px;
-    background:${props => props.theme.bg1};
-    color:${props => props.theme.text1};
-    &:hover {
-        background: ${props => darken(0.05, props.theme.bg3)};
-        transition: ease all 0.1s ;
-    }
-`
-
-
-
-
-const SearchInput = styled(CFormInput)`
-  &:focus, &:active, &:hover {
-    border-color: #FFF !important;
+  const MenuItemStyled = styled(MenuItem)`
+  padding:9px 14px;
+  background:${props => props.theme.bg1};
+  color:${props => props.theme.text1};
+  &:hover {
+      background: ${props => darken(0.05, props.theme.bg3)};
+      transition: ease all 0.1s ;
   }
 `
+const fetchSearchTerm = async () => {
+  setFetching(true)
+  const settings = (searchSettings.networks || defaultNetworks).filter(a => a.includeInResults).map(a => a.network);
+  const term = searchTermDebounced || searchTerm
+  const query = `https://api.dexscreener.com/latest/dex/search/?q=${term}`
+  axios.get(query)
+    .then((response) => setResults(response.data?.pairs?.filter((pair: Pair) => settings.includes(pair.chainId))))
+    .finally(() => setFetching(false))
+}
 
+React.useEffect(() => {
+  if (searchTermDebounced || searchTerm) {
+    fetchSearchTerm()
+  } else {
+    setResults([])
+  }
+}, [searchTermDebounced])
+
+  const isValidPair = (pair: Pair) => (searchSettings.networks || defaultNetworks).filter((network) => network.includeInResults).map(a => a.network).includes(pair.chainId)
+
+
+  // close dropdown on escape
+  useEffect(() => {
+    const escapeKeyDownHandler = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        event.preventDefault()
+        toggleOpen()
+      }
+    }
+
+    document.addEventListener('keydown', escapeKeyDownHandler)
+
+    return () => {
+      document.removeEventListener('keydown', escapeKeyDownHandler)
+    }
+  }, [isOpen, toggleOpen])
+
+
+  // auto set cursor when searchbar is opened
+  useEffect(() => {
+    if (isOpen) {
+      searchRef.current?.focus()
+    }
+  }, [isOpen])
 
   const onPairClick = React.useCallback(async function (pair: Pair) {
     setRouting(true)
-    // const abi = [
-    //   'function name() view returns (string name)',
-    //   'function symbol() view returns (string symbol)',
-    //   'function decimals() view returns (uint8 decimals)',
-    // ];
-    // const { JsonRpcProvider } = ethers.providers;
-    // const provider = new JsonRpcProvider(WEB3_ENDPOINT);
-    // const contract = new ethers.Contract(pair.baseToken.address, abi, provider);
-    // const [decimals] = await Promise.all([
-    //   contract.decimals().catch(handleError),
-    // ]);
-    // const humanReadable = ethers.BigNumber.from(decimals).toNumber()
+
     onPairSelect && onPairSelect(pair)
-    // history.push(`/selective-charts/${pair.baseToken.address}/${pair.baseToken.symbol}/${pair.baseToken.name}/${humanReadable}/${pair.pairAddress}`)
     history.push(`/selective-charts/${pair.chainId}/${pair.pairAddress}`)
     setSearchTerm('')
     setRouting(false)
   }, [onPairSelect])
 
-  const fetchSearchTerm = async () => {
-    setFetching(true)
-    const settings = (searchSettings.networks || defaultNetworks).filter(a => a.includeInResults).map(a => a.network);
-    const term = searchTermDebounced || searchTerm
-    const query = `https://api.dexscreener.com/latest/dex/search/?q=${term}`
-    axios.get(query)
-      .then((response) => setResults(response.data?.pairs?.filter((pair: Pair) => settings.includes(pair.chainId))))
-      .finally(() => setFetching(false))
-  }
-
-  React.useEffect(() => {
-    if (searchTermDebounced || searchTerm) {
-      fetchSearchTerm()
-    } else {
-      setResults([])
-    }
-  }, [searchTermDebounced])
-
-
-  const toggleNetwork = (network: { chainId: number, network: string, includeInResults: boolean }) => {
-    const newInclude = !network.includeInResults
-    const updated = {
-      ...network,
-      includeInResults: newInclude
-    }
-    setSearchSettings({ ...searchSettings, networks: (searchSettings.networks || defaultNetworks).map((setting) => setting.network === network.network ? updated : setting) })
-  }
-  const defaultNetworks = [
-    { chainId: 1, network: 'ethereum', includeInResults: true },
-    { chainId: 56, network: 'bsc', includeInResults: true }
-  ]
-  const theme = useTheme()
   
+
+  const isMobileOrTablet = isMobile || isTablet
   const showCenteredSearchContent =
-  !isOpen && !isMobileOrTablet && searchTerm.length === 0
-
-  const [settingsShow, settingsShowSet] = React.useState(false)
-  const closeSettings = () => settingsShowSet(false)
+    !isOpen && !isMobileOrTablet && searchTerm.length === 0
 
 
-  const isValidPair = (pair: Pair) => (searchSettings.networks || defaultNetworks).filter((network) => network.includeInResults).map(a => a.network).includes(pair.chainId)
-
-  const navbarSearchEventProperties = {
-    navbar_search_input_text: searchTermDebounced,
-  }
 
 
   return (
     <Box position="relative">
-      <Box
-        position={{ sm: 'fixed', md: 'absolute' }}
-        width={{ sm: isOpen ? 'viewWidth' : 'auto', md: 'auto' }}
-        ref={searchRef}
-        className={styles.searchBarContainer}
-        display={{ sm: isOpen ? 'inline-block' : 'none', xl: 'inline-block' }}
-      >
-        <FlRow
-          className={clsx(
-            ` ${!isOpen && !isMobile && magicalGradientOnHover} ${
-              isMobileOrTablet && (isOpen ? styles.visible : styles.hidden)
-            }`
-          )}
-          borderRadius={isOpen || isMobileOrTablet ? undefined : '12'}
-          borderTopRightRadius={isOpen && !isMobile ? '12' : undefined}
-          borderTopLeftRadius={isOpen && !isMobile ? '12' : undefined}
-          borderBottomWidth={isOpen || isMobileOrTablet ? '0px' : '1px'}
-          onClick={() => !isOpen && toggleOpen()}
-          gap="12"
+        <Box
+          position={{ sm: 'fixed', md: 'absolute' }}
+          width={{ sm: isOpen ? 'viewWidth' : 'auto', md: 'auto' }}
+          ref={searchRef}
+          className={styles.searchBarContainer}
+          display={{ sm: isOpen ? 'inline-block' : 'none', xl: 'inline-block' }}
         >
+          <FlRow
+            className={clsx(
+              ` ${styles.searchBar} ${!isOpen && !isMobile && magicalGradientOnHover} ${
+                isMobileOrTablet && (isOpen ? styles.visible : styles.hidden)
+              }`
+            )}
+            borderRadius={isOpen || isMobileOrTablet ? undefined : '12'}
+            borderTopRightRadius={isOpen && !isMobile ? '12' : undefined}
+            borderTopLeftRadius={isOpen && !isMobile ? '12' : undefined}
+            borderBottomWidth={isOpen || isMobileOrTablet ? '0px' : '1px'}
+            onClick={() => !isOpen && toggleOpen()}
+            gap="12"
+          >
             <Box className={showCenteredSearchContent ? styles.searchContentCentered : styles.searchContentLeftAlign}>
-            <Box display={{ sm: 'none', md: 'flex' }}>
-              <MagnifyingGlassIcon />
+              <Box display={{ sm: 'none', md: 'flex' }}>
+                <MagnifyingGlassIcon />
+              </Box>
+              <Box display={{ sm: 'flex', md: 'none' }} color="textTertiary" onClick={toggleOpen}>
+                <ChevronLeftIcon />
+              </Box>
             </Box>
-            <Box display={{ sm: 'flex', md: 'none' }} color="textTertiary" onClick={toggleOpen}>
-              <ChevronLeftIcon />
-            </Box>
-          </Box>
-            <SearchInput 
-            className={`${styles.searchBarInput} ${
-              showCenteredSearchContent ? styles.searchContentCentered : styles.searchContentLeftAlign
-            }`}
-            autoFocus placeholder={"Search by name or address"} type="search" value={searchTerm} onChange={onTermChanged} />
-              
-        </FlRow>
-        <Box className={clsx(isOpen ? styles.visible : styles.hidden)}>
+              <Box
+                as="input"
+                placeholder={'Search Tokens'}
+                onChange={
+                  onTermChanged}
+                className={`${styles.searchBarInput} ${
+                  showCenteredSearchContent ? styles.searchContentCentered : styles.searchContentLeftAlign
+                }`}
+                value={searchTerm}
+                ref={searchRef}
+                width={ isOpen ? 'full' : '160'}
+              />
+            
+          </FlRow>
+          <Box className={clsx(isOpen ? styles.visible : styles.hidden)}>
           {isOpen && (
            <MenuFlyout isMobile={isMobile}>
            
@@ -404,8 +401,11 @@ const SearchInput = styled(CFormInput)`
                    </MenuFlyout>
           )}
         </Box>
-      </Box>
-      
+        </Box>
+        <NavIcon onClick={toggleOpen}>
+          <NavMagnifyingGlassIcon />
+        </NavIcon>
+    
     </Box>
   )
 }

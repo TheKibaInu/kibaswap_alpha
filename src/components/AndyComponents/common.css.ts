@@ -118,7 +118,7 @@ export const magicalGradient = style({
       content: '',
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(91.46deg, #4673FA 0%, #9646FA 100.13%) border-box',
+      background: 'linear-gradient(91.46deg, #ED2224 0%, #E4C520 100.13%) border-box',
       borderColor: 'transparent',
       WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);',
       WebkitMaskComposite: 'xor;',

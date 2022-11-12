@@ -78,7 +78,7 @@ export const rightSideContainer = style([
 const baseMenuItem = style([
     subhead,
     sprinkles({
-        paddingY: '8',
+        paddingY: '16',
         paddingX: '16',
         marginY: '4',
         borderRadius: '12',
@@ -122,7 +122,8 @@ export const mobileBottomBar = style([
         paddingY: '4',
         paddingX: '8',
         height: '60',
-        background: 'whitesmoke',
+        background: 'backgroundSurface',
+
     }),
 ])
 
