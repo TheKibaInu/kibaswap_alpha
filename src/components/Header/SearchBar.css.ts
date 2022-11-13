@@ -27,8 +27,9 @@ export const searchBarContainer = style([
   sprinkles({
     right: '0',
     top: '0',
-    zIndex: '3',
+    zIndex: 'tooltip',
     display: 'inline-block',
+    marginTop: { sm: '36', md: '0' }
   }),
   {
     '@media': {
@@ -59,6 +60,7 @@ export const searchBarInput = style([
     background: 'none',
     lineHeight: '24',
     height: 'full',
+
   }),
 ])
 
