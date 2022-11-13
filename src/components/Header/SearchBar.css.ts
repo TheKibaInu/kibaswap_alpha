@@ -29,7 +29,7 @@ export const searchBarContainer = style([
     top: '0',
     zIndex: 'tooltip',
     display: 'inline-block',
-    marginTop: { sm: '36', md: '0' }
+    marginTop: { sm: '40', md: '0' }
   }),
   {
     '@media': {
