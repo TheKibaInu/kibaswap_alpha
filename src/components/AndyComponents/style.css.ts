@@ -91,7 +91,6 @@ const baseMenuItem = style([
         lineHeight: '24px',
         textDecoration: 'none',
         ':hover': {
-            background: vars.color.lightGrayOverlay,
         },
     },
 ])
@@ -123,6 +122,7 @@ export const mobileBottomBar = style([
         paddingX: '8',
         height: '60',
         background: 'backgroundSurface',
+        alignItems: 'center',
 
     }),
 ])

@@ -22,3 +22,22 @@ export const MenuHoverA = style([
     zIndex: 1,
   },
 ])
+export const MenuHoverB = style([
+  sprinkles({
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    border: 'none',
+    justifyContent: 'center',
+    textAlign: 'center',
+    cursor: 'pointer',
+    padding: '4',
+    borderRadius: '12',
+    transition: '250',
+  }),
+  {
+    ':hover': {
+    },
+    zIndex: 1,
+  },
+])

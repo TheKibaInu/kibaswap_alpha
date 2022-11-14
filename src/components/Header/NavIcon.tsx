@@ -9,6 +9,7 @@ interface NavIconProps {
   onClick: () => void
 }
 
+
 export const NavIcon = ({ children, isActive, onClick }: NavIconProps) => {
   return (
     <Box
@@ -23,3 +24,4 @@ export const NavIcon = ({ children, isActive, onClick }: NavIconProps) => {
     </Box>
   )
 }
+
