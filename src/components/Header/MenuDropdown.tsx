@@ -31,7 +31,7 @@ import {
   Tool,
 } from 'react-feather'
 import * as styles from './MenuDropdown.css'
-import { NavDropdown } from './NavDropdown'
+import { NavDropdown, TopNavDropdown } from './NavDropdown'
 import { NavIcon } from './NavIcon'
 import { useDarkModeManager } from 'state/user/hooks'
 import { MenuHoverA } from './MenuHover'
@@ -264,7 +264,7 @@ export const MenuDropdown= () => {
             default:
               return (
                 
-                <NavDropdown top={{ sm: 'unset', lg: '56' }} bottom={{ sm: '56', lg: 'unset' }} right="0">
+                <TopNavDropdown marginTop= {{ sm: '10' , lg: 'unset' }} alight-self= {{ sm : 'flex-end' , lg: 'unset'}} top={{ sm: 'unset', lg: '56' }} bottom={{ sm: 'unset', lg: 'unset' }} right="0">
                 <Column gap="16">
                   <Column paddingX="8" gap="4">
                     <PrimaryMenuRow href="" close={toggleOpen}>
@@ -315,7 +315,7 @@ export const MenuDropdown= () => {
                 </Icon>
               </IconRow>
                   </Column>
-                  </NavDropdown>
+                  </TopNavDropdown>
                 
               )
           }

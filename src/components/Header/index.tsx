@@ -24,6 +24,7 @@ import * as styles from '../AndyComponents/style.css'
 import { ToolsDropdown } from './toolsdropdown'
 import { MenuDropdown } from './MenuDropdown'
 import { SearchBarNav } from './HeaderPairSearch'
+import { MobileChartsIcon, MoPoolIcon, NavMagnifyingGlassIcon, PoolIcon2, StatsIcon, SwapIcon } from 'components/AndyComponents/icons'
 
 
 
@@ -344,7 +345,10 @@ export default function Header() {
       pathname.startsWith('/increase') ||
       pathname.startsWith('/find')
 
-    const isChartsActive =
+    const isStatsActive =
+      pathname.startsWith('/dashboard') 
+
+      const isChartsActive =
       pathname.startsWith('/selective') ||
       pathname.startsWith('/selective-charts') ||
       pathname.startsWith('/selective-charting')
@@ -352,21 +356,27 @@ export default function Header() {
     return (
       <>
         <MenuItem href="/swap" isActive={pathname.startsWith('/swap')}>
-          <Trans>Swap</Trans>
+      
+        <SwapIcon />
+      
         </MenuItem>
         
         
         <MenuItem href="/pool" id={'pool-nav-link'} isActive={isPoolActive}>
-          <Trans>Pool</Trans>
+        <PoolIcon2 />
         </MenuItem>
 
-        <MenuItem href="/selective-charting" id={`chart-nav-link`} isActive={isChartsActive}>
-            <Trans>Charts</Trans>
+        <MenuItem href="/dashboard" id={`stake-nav-link`} isActive={isStatsActive}>
+        <StatsIcon />
           </MenuItem>
 
-          {isMobile? <ToolsDropdown /> : null }
+          <MenuItem href="/selective-charting" id={`chart-nav-link`} isActive={isChartsActive}>
+        <MobileChartsIcon />
+          </MenuItem>
+
+        {isMobile? <ToolsDropdown /> : null }
           
-        {isMobile? <MenuDropdown /> : null }
+        
 
           
 
@@ -391,7 +401,7 @@ export default function Header() {
           <Box className={styles.leftSideContainer}>
             <Box as="a" href="#/swap" className={styles.logoContainer}>
             <img
-              width={isMobile ? '35px' : '50px'}
+              width={isMobile ? '45px' : '50px'}
               src={logo}
               alt="logo"
             />
@@ -509,11 +519,16 @@ export default function Header() {
             {!!account ? <NetworkCard /> : ''}
             </Box>
             <Box display={{ sm: 'flex', lg: 'flex' }}>
+            {isMobile? <MenuDropdown /> : null }
+            </Box>
+            <Box display={{ sm: 'flex', lg: 'flex' }}>
+           
             <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
               
               <Web3Status />
 
             </AccountElement>
+            
             </Box>
             </FlRow>
           </Box>

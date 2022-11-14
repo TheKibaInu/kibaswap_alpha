@@ -11,6 +11,8 @@ import {
   TwitterIconMenu,
   ChevronUpIcon,
   ChevronDownBagIcon,
+  MagnifyingGlassIcon,
+  ToolsIcon,
 } from 'components/AndyComponents/icons'
 import { body, bodySmall } from 'components/AndyComponents/common.css'
 import { themeVars } from 'theme/spinkles.css'
@@ -32,7 +34,15 @@ import * as styles from './MenuDropdown.css'
 import { NavDropdown } from './NavDropdown'
 import { NavIcon } from './NavIcon'
 import { useDarkModeManager } from 'state/user/hooks'
-import { MenuHoverA } from './MenuHover'
+import { MenuHoverA, MenuHoverB } from './MenuHover'
+import { useIsMobileSp, useIsTabletSp } from 'components/AndyComponents/AndyHooks'
+import { IconWrapper } from 'theme'
+
+
+
+
+
+
 const PrimaryMenuRow = ({
   to,
   href,
@@ -82,6 +92,19 @@ const ChevronWrapper = styled.button`
     border: none;
   }
 `
+
+interface MenuItemProps {
+  isActive?: boolean
+  children: ReactNode
+}
+
+const ToolsWrapper = ({ isActive, children }: MenuItemProps) => {
+  return (
+    <Box className={isActive ? styles.activeMenuItem : styles.menuItem}>
+      {children}
+    </Box>
+  )
+}
 const MenuDivider = styled.div`
  
   margin: 0px;
@@ -117,6 +140,8 @@ export const ToolsDropdown = () => {
   const [isOpen, toggleOpen] = useReducer((s) => !s, false)
   const [darkMode, toggleDarkMode] = useDarkModeManager()
   const [menu, setMenu] = useState<'main' | 'lang'>('main')
+  const isMobile = useIsMobileSp()
+
 
 
   const ref = useRef<HTMLDivElement>(null)
@@ -124,16 +149,24 @@ export const ToolsDropdown = () => {
 
   return (
     <>
+      
       <Box position="relative" ref={ref} >
-        <MenuHoverA isActive={isOpen} onClick={toggleOpen}>
-          
-            <FlRow><Trans>Tools </Trans><ChevronWrapper>
+
+      {isMobile? <MenuHoverB isActive={isOpen} onClick={toggleOpen}>
+          <ToolsWrapper isActive={isOpen}>
+            <ToolsIcon/>
+          </ToolsWrapper>
+          </MenuHoverB>  
+          : null
+        }
+      
+  
+        {isMobile? null : <MenuHoverA isActive={isOpen} onClick={toggleOpen}>
+           <FlRow><Trans>Tools </Trans><ChevronWrapper>
             <MenuDivider/>
             {isOpen ? <ChevronUp size={24}/> : <ChevronDown size={20}/>}
           </ChevronWrapper></FlRow>
-          
-         
-        </MenuHoverA>
+        </MenuHoverA>}
 
         {isOpen && (
           <NavDropdown top={{ sm: 'unset', lg: '56' }} bottom={{ sm: '56', lg: 'unset' }} right="0">

@@ -23,6 +23,24 @@ export const NavDropdown = style([
   {},
 ])
 
+export const mobileNavDropdownTop = style([
+  baseNavDropdown,
+  sprinkles({
+    position: 'fixed',
+    borderBottomRightRadius: '12',
+    borderBottomLeftRadius: '12',
+    top: 'unset',
+    bottom: '56',
+    left: '0',
+    right: '0',
+    width: 'full',
+  }),
+  {
+    borderRightWidth: '0px',
+    borderLeftWidth: '0px',
+  },
+])
+
 export const mobileNavDropdown = style([
   baseNavDropdown,
   sprinkles({

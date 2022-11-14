@@ -2,6 +2,9 @@ import { style } from '@vanilla-extract/css'
 
 import { sprinkles, themeVars, vars } from 'theme/spinkles.css'
 
+export const subhead = sprinkles({ fontWeight: 'medium', fontSize: '16', lineHeight: '24' })
+
+
 export const hover = style([
   sprinkles({
     transition: '250',
@@ -64,5 +67,41 @@ export const IconRow = style([
   sprinkles({
     paddingX: '16',
     justifyContent: { sm: 'center', md: 'flex-start' },
+  }),
+])
+
+const baseMenuItem = style([
+  subhead,
+  sprinkles({
+    paddingY: '16',
+    paddingX: '16',
+    marginY: '4',
+    borderRadius: '12',
+    transition: '250',
+    height: 'min',
+    width: 'full',
+    textAlign: 'center',
+  }),
+  {
+    lineHeight: '24px',
+    textDecoration: 'none',
+    ':hover': {
+      background: 'none',
+    },
+  },
+])
+
+export const menuItem = style([
+  baseMenuItem,
+  sprinkles({
+    color: 'textSecondary',
+  }),
+])
+
+export const activeMenuItem = style([
+  baseMenuItem,
+  sprinkles({
+    color: 'textPrimary',
+    background: 'backgroundFloating',
   }),
 ])
