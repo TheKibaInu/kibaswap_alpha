@@ -2,7 +2,7 @@
   "name": "KibaSwap Token List",
   "version": {
       "major": 1,
-      "minor": 0,
+      "minor": 1,
       "patch": 0
   },
   "keywords": [
@@ -13,6 +13,14 @@
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
   "timestamp": "2023-03-12T14:15:22+0000",
   "tokens": [
+    {
+      "chainId": 1,
+      "address": "0x2d886570a0da04885bfd6eb48ed8b8ff01a0eb7e",
+      "name": "Blockchain Bets",
+      "symbol": "BCB",
+      "decimals": 9,
+      "logoURI": "https://assets.coingecko.com/coins/images/28694/thumb/200x200.jpg?1673412258"
+    },
     {
       "chainId": 1,
       "address": "0x005D1123878Fc55fbd56b54C73963b234a64af3c",
