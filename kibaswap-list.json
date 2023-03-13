@@ -1,8 +1,8 @@
 {
   "name": "KibaSwap Token List",
   "version": {
-      "major": 0,
-      "minor": 2,
+      "major": 1,
+      "minor": 0,
       "patch": 0
   },
   "keywords": [
@@ -10,8 +10,8 @@
       "tokens",
       "trusted"
   ],
-  "logoURI": "https://gemini.com/static/images/loader.png",
-  "timestamp": "2022-06-22T14:15:22+0000",
+  "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
+  "timestamp": "2023-03-12T14:15:22+0000",
   "tokens": [
     {
       "chainId": 1,
