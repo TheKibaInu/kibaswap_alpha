@@ -1,17 +1,17 @@
 {
-  "name": "KibaSwap Default",
-  "timestamp": "2023-03-13",
+  "name": "KibaSwap Token List",
   "version": {
-    "major": 9,
-    "minor": 0,
-    "patch": 1
+      "major": 0,
+      "minor": 2,
+      "patch": 0
   },
-  "tags": {},
-  "logoURI": "",
   "keywords": [
-    "KibaSwap",
-    "default"
+      "Kiba",
+      "tokens",
+      "trusted"
   ],
+  "logoURI": "https://gemini.com/static/images/loader.png",
+  "timestamp": "2022-06-22T14:15:22+0000",
   "tokens": [
     {
       "chainId": 1,
