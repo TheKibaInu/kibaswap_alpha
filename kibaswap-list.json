@@ -2,7 +2,7 @@
   "name": "KibaSwap Token List",
   "version": {
       "major": 1,
-      "minor": 4,
+      "minor": 5,
       "patch": 0
   },
   "keywords": [
@@ -11,7 +11,7 @@
       "trusted"
   ],
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
-  "timestamp": "2023-03-14T12:15:00+0000",
+  "timestamp": "2023-03-14T13:15:00+0000",
   "tokens": [
     {
       "chainId": 1,
@@ -52,6 +52,14 @@
       "symbol": "KIBA",
       "decimals": 18,
       "logoURI": "https://user-images.githubusercontent.com/90528938/171100089-3c5e6a91-54e7-41da-96f7-52ddb60cab5f.png"
+    },
+    {
+      "chainId": 1,
+      "address": "0x97d4f49eeb0e2c96d5ebaa71ab8418e563ecd9fd",
+      "name": "Liquid Staking Derivative",
+      "symbol": "LSD",
+      "decimals": 9,
+      "logoURI": "https://assets.coingecko.com/coins/images/29188/thumb/LSD.jpg?1677219444"
     },
     {
       "chainId": 1,
