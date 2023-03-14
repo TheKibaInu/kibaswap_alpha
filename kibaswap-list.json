@@ -2,7 +2,7 @@
   "name": "KibaSwap Token List",
   "version": {
       "major": 1,
-      "minor": 2,
+      "minor": 3,
       "patch": 0
   },
   "keywords": [
@@ -11,7 +11,7 @@
       "trusted"
   ],
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
-  "timestamp": "2023-03-13T14:15:22+0000",
+  "timestamp": "2023-03-13T22:15:22+0000",
   "tokens": [
     {
       "chainId": 1,
@@ -52,6 +52,14 @@
       "symbol": "OPTI",
       "decimals": 18,
       "logoURI": "https://assets.coingecko.com/coins/images/29328/small/Optimus_AI_Logo.png?1678170818"
+    },
+    {
+      "chainId": 1,
+      "address": "0xa4eb9c64ec359d093eac7b65f51ef933d6e5f7cd",
+      "name": "Stablz",
+      "symbol": "STABLZ",
+      "decimals": 18,
+      "logoURI": "https://assets.coingecko.com/coins/images/28983/thumb/Frame_2869.png?1675760347"
     }
   
   ]
