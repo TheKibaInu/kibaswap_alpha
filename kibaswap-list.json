@@ -15,6 +15,13 @@
   "tokens": [
     {
       "chainId": 1,
+      "address": "0x7d8146cf21e8d7cbe46054e01588207b51198729",
+      "name": "BOB Token",
+      "symbol": "BOB",
+      "decimals": 18,
+      "logoURI": "https://assets.coingecko.com/coins/images/29929/thumb/bob.png?1682140021"
+    },    {
+      "chainId": 1,
       "address": "0x2d886570a0da04885bfd6eb48ed8b8ff01a0eb7e",
       "name": "Blockchain Bets",
       "symbol": "BCB",
