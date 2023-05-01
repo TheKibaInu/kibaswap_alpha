@@ -3,7 +3,7 @@
   "version": {
       "major": 1,
       "minor": 6,
-      "patch": 0
+      "patch": 1
   },
   "keywords": [
       "Kiba",
@@ -11,7 +11,7 @@
       "trusted"
   ],
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
-  "timestamp": "2023-04-29T13:15:00+0000",
+  "timestamp": "2023-04-30T13:20:00+0000",
   "tokens": [
     {
       "chainId": 1,
@@ -43,14 +43,6 @@
       "symbol": "CULT",
       "decimals": 18,
       "logoURI": "https://assets.coingecko.com/coins/images/23331/thumb/quxZPrbC_400x400.jpg?1643880172"
-    },
-    {
-      "chainId": 1,
-      "address": "0x2e516ba5bf3b7ee47fb99b09eadb60bde80a82e0",
-      "name": "Eggs",
-      "symbol": "EGGS",
-      "decimals": 18,
-      "logoURI": "https://assets.coingecko.com/coins/images/29024/thumb/egg200x200.png?1676016342"
     },
     {
       "chainId": 1,
