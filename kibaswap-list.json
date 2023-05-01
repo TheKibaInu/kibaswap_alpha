@@ -2,7 +2,7 @@
   "name": "KibaSwap Token List",
   "version": {
       "major": 1,
-      "minor": 5,
+      "minor": 6,
       "patch": 0
   },
   "keywords": [
@@ -11,7 +11,7 @@
       "trusted"
   ],
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
-  "timestamp": "2023-03-14T13:15:00+0000",
+  "timestamp": "2023-04-29T13:15:00+0000",
   "tokens": [
     {
       "chainId": 1,
