@@ -3,7 +3,7 @@
   "version": {
       "major": 1,
       "minor": 6,
-      "patch": 1
+      "patch": 2
   },
   "keywords": [
       "Kiba",
@@ -11,8 +11,16 @@
       "trusted"
   ],
   "logoURI": "https://kibainu.com/static/media/logo.0dffddcc.svg",
-  "timestamp": "2023-04-30T13:20:00+0000",
+  "timestamp": "2023-05-10T13:21:22+0000",
   "tokens": [
+    {
+      "chainId": 1,
+      "address": "0x0ebe30595a44e5288c24161ddfc1e9fa08e33a0c",
+      "name": "Nyan Meme Coin",
+      "symbol": "NYAN",
+      "decimals": 18,
+      "logoURI": "https://assets.coingecko.com/coins/images/30197/thumb/n0z-571z_400x400.png?1683609656"
+    },    
     {
       "chainId": 1,
       "address": "0x7d8146cf21e8d7cbe46054e01588207b51198729",
@@ -20,7 +28,8 @@
       "symbol": "BOB",
       "decimals": 18,
       "logoURI": "https://assets.coingecko.com/coins/images/29929/thumb/bob.png?1682140021"
-    },    {
+    },  
+    {
       "chainId": 1,
       "address": "0x2d886570a0da04885bfd6eb48ed8b8ff01a0eb7e",
       "name": "Blockchain Bets",
